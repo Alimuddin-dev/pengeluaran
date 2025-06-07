@@ -1,25 +1,110 @@
 <!DOCTYPE html>
-<html>
+<html lang="id">
 <head>
-  <title>Form Produk</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Form Produk & Harga</title>
+
+  <!-- Font Awesome CDN for icons -->
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    integrity="sha512-papb2+MjXo6O3bMNhKnZOG4v2GmT2vLRq3xW20dHo9QAfX3tCv8UllR5tg2Q8TTG6lwp4SvvRmK9A93yP+U6iw=="
+    crossorigin="anonymous"
+    referrerpolicy="no-referrer"
+  />
+
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: #f0f4f8;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+      padding: 10px;
+    }
+    .container {
+      background: white;
+      padding: 25px 30px;
+      border-radius: 10px;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+      width: 100%;
+      max-width: 360px;
+      text-align: center;
+    }
+    h2 {
+      margin-bottom: 20px;
+      color: #333;
+    }
+    form {
+      display: flex;
+      gap: 10px;
+    }
+    input[type="text"] {
+      flex: 1;
+      padding: 10px 15px;
+      font-size: 16px;
+      border: 2px solid #007bff;
+      border-radius: 6px;
+      transition: border-color 0.3s ease;
+    }
+    input[type="text"]:focus {
+      outline: none;
+      border-color: #0056b3;
+      box-shadow: 0 0 6px #0056b3;
+    }
+    button {
+      background-color: #007bff;
+      border: none;
+      padding: 0 18px;
+      border-radius: 6px;
+      cursor: pointer;
+      color: white;
+      font-size: 18px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      transition: background-color 0.3s ease, transform 0.2s ease;
+    }
+    button:hover {
+      background-color: #0056b3;
+      transform: scale(1.05);
+    }
+    button:active {
+      transform: scale(0.95);
+    }
+  </style>
 </head>
 <body>
-  <h2>Input Produk & Harga</h2>
-  <form id="formProduk">
-    <input type="text" name="produk" placeholder="Misal: sepeda 1000k" required style="width: 200px; padding: 5px;" />
-    <button type="submit" style="padding: 5px 10px;">Kirim</button>
-  </form>
+
+  <div class="container">
+    <h2><i class="fa-solid fa-cart-plus"></i> Input Produk & Harga</h2>
+    <form id="formProduk" autocomplete="off">
+      <input
+        type="text"
+        name="produk"
+        placeholder="Misal: sepeda 1000k"
+        required
+        aria-label="Input produk dan harga"
+      />
+      <button type="submit" aria-label="Kirim data">
+        <i class="fa-solid fa-paper-plane"></i> Kirim
+      </button>
+    </form>
+  </div>
 
   <script>
-    document.getElementById("formProduk").addEventListener("submit", function(e) {
+    document.getElementById("formProduk").addEventListener("submit", function (e) {
       e.preventDefault();
       const formData = new FormData(this);
 
       fetch("https://script.google.com/macros/s/AKfycbwBQxPCVKPqmQ0sWglDQR8CiZ8qnpD58AtCra0ORhxOa57SBRqskWG9BlwoP8GLEtdApA/exec", {
         method: "POST",
-        body: formData
+        mode: "no-cors",  // penting supaya gak kena CORS error
+        body: formData,
       })
-      .then(res => res.text())
       .then(() => {
         alert("✅ Data berhasil dikirim!");
         this.reset();
@@ -27,5 +112,6 @@
       .catch(err => alert("❌ Gagal kirim data: " + err));
     });
   </script>
+
 </body>
 </html>
