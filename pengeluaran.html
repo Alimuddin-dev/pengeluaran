@@ -11,21 +11,21 @@
   </form>
 
   <script>
-  document.getElementById("formProduk").addEventListener("submit", function(e) {
-    e.preventDefault();
-    const formData = new FormData(this);
+    document.getElementById("formProduk").addEventListener("submit", function(e) {
+      e.preventDefault();
+      const formData = new FormData(this);
 
-    fetch("https://script.google.com/macros/s/AKfycbwllscRM6md66FI-gZPT0SdaSo1TaMTnFAsNHp0iEkfIcA5rCI2SMXQTW6PbjjuM18W0g/exec", {
-      method: "POST",
-      body: formData
-    })
-    .then(res => res.text())
-    .then(() => {
-      alert("Data berhasil dikirim!");
-      this.reset();
-    })
-    .catch(() => alert("Gagal kirim data!"));
-  });
+      fetch("https://script.google.com/macros/s/AKfycbwllscRM6md66FI-gZPT0SdaSo1TaMTnFAsNHp0iEkfIcA5rCI2SMXQTW6PbjjuM18W0g/exec", {
+        method: "POST",
+        body: formData
+      })
+      .then(res => res.text())
+      .then(() => {
+        alert("Data berhasil dikirim!");
+        this.reset();
+      })
+      .catch(err => alert("Gagal kirim data: " + err));
+    });
   </script>
 </body>
 </html>
