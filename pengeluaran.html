@@ -15,16 +15,16 @@
       e.preventDefault();
       const formData = new FormData(this);
 
-      fetch("https://script.google.com/macros/s/AKfycbwllscRM6md66FI-gZPT0SdaSo1TaMTnFAsNHp0iEkfIcA5rCI2SMXQTW6PbjjuM18W0g/exec", {
+      fetch("https://script.google.com/macros/s/AKfycbxfBCSr4jrR9UbveJW8mRIvvuDvXWJj4Ey71Bc14TbL/dev", {
         method: "POST",
         body: formData
       })
       .then(res => res.text())
       .then(() => {
-        alert("Data berhasil dikirim!");
+        alert("✅ Data berhasil dikirim!");
         this.reset();
       })
-      .catch(err => alert("Gagal kirim data: " + err));
+      .catch(err => alert("❌ Gagal kirim data: " + err));
     });
   </script>
 </body>
